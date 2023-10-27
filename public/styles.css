@@ -90,6 +90,12 @@ label{
     margin-right: 20px;
 }
 
-#room1-send{
+.room1{
+    background-color: aliceblue;
+    border: solid 1px #6291e9;
+    color: black;
+}
+.room1:hover{
     background-color: #6291e9;
+    color: aliceblue;
 }
