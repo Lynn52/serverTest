@@ -326,15 +326,14 @@ io.on('connection', function(socket){
         console.log(data);
         //io.emit('broadcast', data);
         //모두에게 broadcast가 아니라 특정 id의 소켓 가진 클라이언트에게만 메시지 전송
-        //io.to(socket.id).emit('broadcast', data);
-
+        io.to(socket.id).emit('broadcast', data);
+    })
+    
     socket.on('room1-send', function(data){
-         io.to('room1').emit('broadcast', );
+         io.to('room1').emit('broadcast', data);
     })
     
     socket.on('joinroom',function(data){
         socket.join('room1');
-    })
-
     })
 })

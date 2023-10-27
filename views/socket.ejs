@@ -18,11 +18,15 @@
 
     <div class="bottomContainer">
         <div class="box" style="flex-direction: column;">
-            <button id="room1-send" class="btn btn-outline">채팅방1 입장</button>
+            <div style="flex-direction: row;">
+                <button id="room1-send" class="btn btn-outline">채팅방1 입장</button>
+                <button id="room1-send" class="btn btn-outline">채팅방1에서 메시지 보내기</button>
+            </div>
+            
             <p></p>
             <div>
                 <input type="text" id="input1"></input>
-        <button id="send" class="btn btn-outline">서버에게 메시지 보내기</button> 
+                <button id="send" class="btn btn-outline">서버에게 메시지 보내기</button> 
             </div>
         </div>
     </div>
@@ -51,6 +55,10 @@
         socket.on('broadcast', function(data){
             console.log(data);
             $('#content').append('<div>'+data+'</div>');
+        })
+
+        $('#room1').click(function(){
+          socket.emit('joinroom', '채팅방 입장시켜줘');
         })
         
     </script>
