@@ -1,0 +1,91 @@
+.color1 {color: #6291e9;}
+.color2 {color: #91a0ee;}
+.color3 {color: #b6b2f4;}
+.color4 {color: #d4c6fa;}
+.color5 {color: #ecd9ff;}
+
+.deleteBtn{
+    border-radius: 10px;
+    border-color: orangered;
+    border-width: 1px;
+    border-style: solid;
+    color: orangered;
+    background-color: white;
+}
+
+.deleteBtn:hover{
+    border-radius: 10px;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    color:white;
+    background-color: orangered;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.myPage{
+    margin-right: 15px;
+}
+
+.dropdown-item:hover{
+    background-color: #FFC300;
+    color: aliceblue;
+}
+
+.btn-outline{
+    background-color: aliceblue;
+    border: solid 1px #FFC300;
+    color: black;
+}
+.btn-outline:hover{
+    background-color: #FFC300;
+    color: aliceblue;
+}
+
+.headerArea{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+label{
+    margin-bottom: 10px;
+}
+
+.bottomContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-link{
+    text-decoration: underline;
+    color: #FFC300;
+}
+
+.dateArea{
+    text-align: right;
+}
+
+.imgArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input1{
+    margin-right: 20px;
+}

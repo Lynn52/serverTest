@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <%- include('menu.html') %>
+      <div class="headerArea">
+        <h1> 📜 </h1>
+      </div>
+      <p></p>
+      <div class="bottomContainer" style="margin-bottom: 30px;">
+        <div class="container input-group ml-2 my-3">
+          <input type="search" class="form-control sword" placeholder="검색어 입력"></input>
+          <button class="btn btn-outline sbtn"> 검색하기 </button>
+        </div>
+      </div>
+      
+      <table class="table table-hover table-striped text-center container">
+        <thead style="border-color: black; border-style: solid;">
+          <tr>
+            <th scope="col">제목</th>
+            <th scope="col">작성일</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody style="align-items: center; justify-content: center; text-align: center;">
+            <% for(let i = 0; i < data.length ; i++){ %>
+                <tr>
+                    <td><a href="/content/<%= data[i]._id %>"> <%= data[i].title %> </a></td>
+                    <td> <%= data[i].date %></td>
+                    <td><button class="delete deleteBtn" data-id="<%= data[i]._id%>"> Delete </button></td>
+                </tr>
+            <% } %>
+        </tbody>
+      </table>
+
+      <div class="bottomContainer my-3">
+        <button class="btn btn-outline enter">글쓰기</button>
+      </div>
+        
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $('.delete').click(function(e){
+            let sid = e.target.dataset.id; //클릭한 버튼의 id를 sid라는 변수에 넘기기
+            $.ajax({
+              type : "post",
+              url : "/delete",
+              data : { _id : sid } 
+            }).done(function(result){
+                //응답에 성공했을 때
+                //페이지 새로고침 시 삭제 상태 반영 가능 = 해당 게시물 제목 삭제됨
+                //location.reload();  
+                //cf. location.href="이동할 주소", location.replace="이동할 주소"
+                //= location.replace("");
+                item.parent('td').parent('tr').remove();
+                console.log('success');
+            }).fail(function(xhr, textStatus, errorThrown){
+              //응답에 실패했을 때
+              console.log('게시물 삭제 실패');
+              console.log(xhr, textStatus, errorThrown);
+            })
+        })
+      
+        $('.enter').click(function(e){
+          location.href = "\enter";
+        })
+
+        $('.sbtn').click(function(e){
+          let inputValue = $('.sword').val();
+          location.href='\\search?value=' + inputValue;
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

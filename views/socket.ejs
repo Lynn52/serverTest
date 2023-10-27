@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Socket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+
+    <%- include('menu.html') %>
+    <div class="headerArea">
+        <h1> 📲 </h1><p></p>
+        
+    </div>
+
+    <div class="bottomContainer">
+        <div class="box" style="flex-direction: column;">
+            <button id="room1-send" class="btn btn-outline">채팅방1 입장</button>
+            <p></p>
+            <div>
+                <input type="text" id="input1"></input>
+        <button id="send" class="btn btn-outline">서버에게 메시지 보내기</button> 
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="bottomContainer">
+        <div id="content"></div>
+    </div>
+    
+    <script>
+        //웹 소켓에 접속하라는 의미의 코드
+        var socket = io();
+
+        //$('#send').click(function(){
+        //    var inputText = $('#input1').val();
+        //    socket.emit('user-send', inputText)
+        //})
+        
+        $('#room1-send').click(function(){
+            socket.emit('room1-send', $('#input1').val());
+        })
+
+        $('#send').click(function(){
+            socket.emit('room1-send', $('#input1').val());
+        })
+
+        socket.on('broadcast', function(data){
+            console.log(data);
+            $('#content').append('<div>'+data+'</div>');
+        })
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
